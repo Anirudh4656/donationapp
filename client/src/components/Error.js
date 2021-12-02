@@ -13,10 +13,10 @@ const Error = () => {
         </div> 
         <h2>we are sorry,page not found</h2>
         <p className="mb-5">
-        the page you are looking is not av..
+        The page you are looking is not found!!!
         </p>
 
-        /*isse button a gya*/
+       
         <NavLink to ="/"> Back to Homepage </NavLink>
         </div> 
         </div> 
