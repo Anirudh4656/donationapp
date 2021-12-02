@@ -1,0 +1,23 @@
+.home-main {
+  display: flex;
+  width: 100%;
+  height: 90vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-main-p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: -4px 1px;
+}
+.home-main-p2 {
+  font-size: 1.5rem;
+  letter-spacing: 5px;
+}
+.home-main-p-h2 {
+  color: #20dbc2;
+  font-size: 2.5rem;
+  margin: 3px 4px;
+}
