@@ -44,7 +44,7 @@ const Home = () => {
         <h2 className="home-main-p-h2">{name}</h2>
        
              <p className="home-main-p2">{show ?"Happy To See you"
-              :"Please Sigin to Continue!"}</p>
+              :"Please Signin to Continue!"}</p>
 
         </div>
         </>
