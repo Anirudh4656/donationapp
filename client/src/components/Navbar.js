@@ -25,7 +25,7 @@ return(
   return(
     <>
       <li class="nav-item">
-          <NavLink className="nav-link active" aria-current="page" to="/Home">Home</NavLink>
+          <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
         </li>
         <li class="nav-item">
           <NavLink className="nav-link" to="/About">About</NavLink>
