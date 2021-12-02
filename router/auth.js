@@ -12,9 +12,9 @@ require("../db/conn")
 const authenticate =require ("../middleware/authenticate");
 
 const User= require("../model/userSchema")
-router.get("/",(req,res) =>{
-    res.send("hello from server");
-})
+// router.get("/",(req,res) =>{
+//     res.send("hello from server");
+// })
 //Using Promises
 // router.post("/register",(req,res)=>{
 //     const{name, email, phone , work,password,cpassword} = req.body
