@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import{BrowserRouter} from "react-router-dom";
-
+import Card from "./components/card"
 
 ReactDOM.render(
   <React.StrictMode>

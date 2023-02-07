@@ -6,7 +6,27 @@
   justify-content: center;
   align-items: center;
 }
-
+.home-main  a{
+  /* font-family: */
+  color: #000;
+ text-decoration:none;
+  font-size:14px;
+  text-transform:uppercase;
+  background: #189cf0;
+  display:inline-block;
+  padding: 16px 38px;
+  border:2px solid transparent;
+  border-radius:40px;
+  color:#fff;
+  font-weight:400;
+  -webkit-transition:0.2s all;
+  transition: 0.2s all;
+  }
+  .home-main  a:hover{
+      background-color:#fff;
+      border-color:#189cf0;
+      color:#189cf0;
+  }
 .home-main-p {
   font-size: 1.5rem;
   font-weight: 600;

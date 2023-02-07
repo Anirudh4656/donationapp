@@ -5,12 +5,17 @@ app.use(express.json());
 const router= express.Router();
 const bcrypt = require("bcryptjs") 
 const cokkiep= require("cookie-parser")
-
+const crypto = require("crypto");
 router.use(cokkiep())
 
 require("../db/conn")
 const authenticate =require ("../middleware/authenticate");
-
+const Razorpay =require("razorpay");
+var instance = new Razorpay({
+    key_id: process.env.RAZORPAY_API_KEY,
+    key_secret: process.env.RAZORPAY_API_SECRETKEY,
+  });
+  console.log(instance);
 const User= require("../model/userSchema")
 // router.get("/",(req,res) =>{
 //     res.send("hello from server");
@@ -49,17 +54,12 @@ router.post("/register",async(req,res)=>{
         return res.status(422).json({error:"wrong password"})
     }else{
         const user= new User({name, email, phone , work,password,cpassword})
+          /*sending to database*/
         await user.save();
-        
             res.status(201).json({message:"user registered sucessfully"});
           
     }
-       /*sending to database*/
-            const user= new User({name, email, phone , work,password,cpassword})
-            await user.save();
-            
-               
-            
+     
             const userRegistration = await user.save();
             if(userRegistration){
                return res.status(201).json({message:"user registered sucessfully"});
@@ -151,4 +151,58 @@ router.get('/logout', (req,res)=>{
     res.status(200).send("user logout");
 
 })
+ router.post("/checkout",async(req,res)=>{
+    const {amount}=req.body;
+    console.log(amount);
+    const options={
+        amount:Number(amount*100),
+        currency:"INR",
+      
+    };
+   const orders = await instance.orders.create(options)
+   console.log(orders);
+   res.status(200).json({
+    success:true,
+    orders
+   });
+});
+ router.post("/payment",async(req,res)=>{
+ 
+    let body=req.body.response.razorpay_order_id + "|" + req.body.response.razorpay_payment_id;
+
+ 
+    const expectedSignature = crypto.createHmac('sha256', '9Ks4CEQeeDi0M893fJP9StqI')
+                                    .update(body.toString())
+                                    .digest('hex');
+                                    console.log("sig received " ,req.body.response.razorpay_signature);
+                                    console.log("sig generated " ,expectedSignature);
+    var response = {"signatureIsValid":"false"}
+    if(expectedSignature === req.body.response.razorpay_signature){
+        await User.create({
+            razorpay_signature,
+            razorpay_order_id,
+            razorpay_payment_id
+        })
+  res.redirect(`http://localhost:3000/paymentsuccess?reference=${razorpay_order_id}`)
+    }else{
+        res.status(400).json({
+            success:false,
+        });
+    }
+
+
+
+
+   res.status(200).json({
+    success:true,
+    orders
+   });
+})
+ router.get("/gateway",async(req,res)=>{
+   
+   res.status(200).json({
+    success:true,
+  key:process.env.RAZORPAY_API_KEY
+   });
+});
 module.exports=router;

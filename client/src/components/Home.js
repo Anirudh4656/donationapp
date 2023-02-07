@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import "./home.css";
-
+import {NavLink} from "react-router-dom";
 const Home = () => {
     
     const [name, setName] = useState("");
@@ -13,7 +13,6 @@ const Home = () => {
          const res =  await fetch("/getdata",{
              method:"GET",
              headers:{
-               
                  "Content-Type":"application/json"
              },
            
@@ -26,11 +25,13 @@ const Home = () => {
         //      throw error;
         //  }
         setShow(true);
+      
        }catch(err){
            console.log(err);
          
        }
    }
+  
    /*useeffect me async awit use na kr skta*/
    useEffect(()=>{
        homePage();
@@ -43,9 +44,9 @@ const Home = () => {
         <p className="home-main-p">Welcome!</p>
         <h2 className="home-main-p-h2">{name}</h2>
        
-             <p className="home-main-p2">{show ?"Happy To See you"
+             <p className="home-main-p2">{show ?(<>"Happy To See you" <NavLink to ="/card"> Back to Homepage </NavLink></>)
               :"Please Signin to Continue!"}</p>
-
+             
         </div>
         </>
     )

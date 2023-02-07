@@ -7,7 +7,7 @@ import Login from "./components/Login";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Logout from "./components/Logout";
-
+import Card from "./components/card"
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Route , Switch} from "react-router-dom";
 import { initialState, reducer } from './components/reducer/UseReducer';
@@ -17,6 +17,12 @@ const Routing = ()=>{
     <Switch>
     <Route  exact path="/">
         <Home />
+    </Route>
+    <Route  path="/Home">
+        <Home />
+    </Route>
+    <Route  path="/card">
+        <Card />
     </Route>
     <Route path="/About">
        <About/>
@@ -33,12 +39,13 @@ const Routing = ()=>{
     <Route path="/Logout">
         <Logout />
     </Route>
-    /*last me lika nhi to / phle padh lega*/
-    <Route  path="/">
+   
+    <Route  path="/error">
         <Error />
     </Route>
- 
-    </Switch>)
+
+    </Switch>
+    )
 }
 const App = () => {
     //1.we need context api

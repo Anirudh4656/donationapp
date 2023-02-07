@@ -1,7 +1,9 @@
 const dotenv = require("dotenv")
 const express=require("express")
 const app= express();
-
+app.use(cors());
+const Razorpay =require("razorpay");
+const cors =require("cors");
 const mongoose= require ("mongoose")
 dotenv.config({path:"./config.env"}) 
 /*express.json krke koi bhi data aye usko convert krdo object me*/
@@ -12,14 +14,15 @@ app.use(require("./router/auth"))
 /*loi bhi data aye object me kr do convert and dikah 
 do*/
 
-const User = require("./model/userSchema")
+
+
 
 const PORT=process.env.PORT || 5000;
 
-// app.get("/contact",(req,res) =>{
-//     res.cookie("test" ,'thapa');
-//     res.send("hello from server");
-// }) 
+app.get("/contact",(req,res) =>{
+    res.cookie("test" ,'thapa');
+    res.send("hello from server");
+}) 
 
 //3: heroku
 if(process.env.NODE_ENV="production"){
